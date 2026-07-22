@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="bg-amber-600 text-gray-800 p-4">
       Moj Navbar
       <span className="pl-4">|</span>
-      <Link className="pl-4" href="/awesome">hello mothertrucker</Link>
+      <Link className="pl-4" href="/firstnewpageever">new page</Link>
     </nav>
   );
 }
