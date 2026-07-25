@@ -1,0 +1,4 @@
+layout.tsx = okvir aplikacije
+page.tsx   = sadržaj stranice
+component  = dio stranice koji ponavljaš
+Tailwind   = kako sve izgleda
