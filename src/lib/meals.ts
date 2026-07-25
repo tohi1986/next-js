@@ -1,9 +1,21 @@
 import db from "./db";
 
-export function getMeals() {
+export type Meal = {
+  id: number;
+  title: string;
+  slug: string;
+  image: string;
+  summary: string;
+  instructions: string;
+  author: string;
+};
+
+
+
+export function getMeals(): Meal[] {
   const meals = db.prepare(
     "SELECT * FROM meals"
   ).all();
 
-  return meals;
+  return meals as Meal[];
 }
