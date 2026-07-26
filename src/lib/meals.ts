@@ -1,21 +1,44 @@
 import db from "./db";
 
-export type Meal = {
-  id: number;
+
+export function getMeals() {
+  return db.prepare(
+    "SELECT * FROM meals"
+  ).all();
+}
+
+
+export function saveMeal(meal: {
   title: string;
   slug: string;
   image: string;
   summary: string;
   instructions: string;
   author: string;
-};
+  email: string;
+}) {
+  const insert = db.prepare(`
+    INSERT INTO meals
+    (
+      title,
+      slug,
+      image,
+      summary,
+      instructions,
+      author,
+      email
+    )
+    VALUES
+    (
+      @title,
+      @slug,
+      @image,
+      @summary,
+      @instructions,
+      @author,
+      @email
+    )
+  `);
 
-
-
-export function getMeals(): Meal[] {
-  const meals = db.prepare(
-    "SELECT * FROM meals"
-  ).all();
-
-  return meals as Meal[];
+  return insert.run(meal);
 }
