@@ -2,6 +2,12 @@ import { getMeals } from "@/lib/meals";
 import MealCard from "@/components/MealCard";
 import { notFound } from "next/navigation";
 
+export const metadata = {
+  title: "All Meals",
+  description: "Browse all meals",
+};
+
+
 export default function MealsPage() {
   const meals = getMeals();
 
