@@ -58,3 +58,13 @@ export function saveMeal(meal: {
 
   return insert.run(meal);
 }
+
+export function getMeal(slug: string): Meal | undefined {
+  const meal = db
+    .prepare(
+      "SELECT * FROM meals WHERE slug = ?"
+    )
+    .get(slug) as Meal | undefined;
+
+  return meal;
+}
