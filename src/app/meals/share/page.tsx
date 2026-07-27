@@ -1,5 +1,5 @@
 import { shareMeal } from "@/actions/meals-actions"
-
+import ImagePicker from "@/components/ImagePicker"
 
 
 export default function ShareMealPage() {
@@ -48,12 +48,7 @@ export default function ShareMealPage() {
           rows={5}
         />
 
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          className="border p-2 rounded bg-black text-amber-400"
-        />
+        <ImagePicker />
 
         <button
           type="submit"

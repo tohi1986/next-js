@@ -1,7 +1,9 @@
 "use server";
-
+import { revalidatePath } from "next/cache";
+import { mealSchema } from "@/lib/validations/meals-schema";
 import { saveMeal } from "@/lib/meals";
 import { saveImage } from "@/lib/upload-image";
+
 
 function createSlug(text: string) {
   return text
@@ -17,7 +19,8 @@ export async function shareMeal(formData: FormData) {
 
   const imageFile = formData.get("image") as File;
 
-const image = await saveImage(imageFile);
+  const image = await saveImage(imageFile);
+
 
   const meal = {
     title,
@@ -30,5 +33,14 @@ const image = await saveImage(imageFile);
   };
 
 
-  saveMeal(meal);
+  const result = mealSchema.safeParse(meal);
+
+
+  if (!result.success) {
+    throw new Error("Invalid meal data");
+  }
+
+
+  saveMeal(result.data);
+  revalidatePath("/meals")
 }
